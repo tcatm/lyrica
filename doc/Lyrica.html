@@ -1,0 +1,53 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<link rel="stylesheet" href="style.css" type="text/css">
+<meta content="text/html; charset=iso-8859-1" http-equiv="Content-Type">
+<link rel="Start" href="index.html">
+<link rel="Up" href="index.html">
+<link title="Index of values" rel=Appendix href="index_values.html">
+<link title="Index of modules" rel=Appendix href="index_modules.html">
+<link title="Lyrica" rel="Chapter" href="Lyrica.html"><title>Lyrica : Lyrica</title>
+</head>
+<body>
+<div class="navbar">&nbsp;<a class="up" href="index.html" title="Index">Up</a>
+&nbsp;</div>
+<h1>Module <a href="type_Lyrica.html">Lyrica</a> (<a href="code_Lyrica.html">.ml</a>)</h1>
+
+<pre><span class="keyword">module</span> Lyrica: <code class="code">sig</code> <a href="Lyrica.html">..</a> <code class="code">end</code></pre><div class="info module top">
+A simple and efficient <code class="code">init</code> implementation.<br>
+</div>
+<hr width="100%">
+
+<pre><span id="VALfull_signal_set"><span class="keyword">val</span> <a href="code_VALLyrica.full_signal_set.html">full_signal_set</a></span> : <code class="type">int list</code></pre><div class="info ">
+Simply an <em>int list</em> which holds every possible signal.
+    None is provided by default in Sys, so one was simply implemented
+    as a list of all possible signals.<br>
+</div>
+
+<pre><span id="VALlog"><span class="keyword">val</span> <a href="code_VALLyrica.log.html">log</a></span> : <code class="type">?status:bool -> string -> unit</code></pre><div class="info ">
+Pretty-print a message. <sup class="superscript">Serves no practical use. </sup><br>
+</div>
+
+<pre><span id="VALcheckpid"><span class="keyword">val</span> <a href="code_VALLyrica.checkpid.html">checkpid</a></span> : <code class="type">unit -> unit</code></pre><div class="info ">
+Check the acquired PID is indeed 1, and suspend execution if not.<br>
+</div>
+
+<pre><span id="VALspawn"><span class="keyword">val</span> <a href="code_VALLyrica.spawn.html">spawn</a></span> : <code class="type">string -> string array -> unit</code></pre><div class="info ">
+Spawn a forked process for the given command/filename,
+    create a new session for it and unblock all signals.<br>
+</div>
+
+<pre><span id="VALreap_children"><span class="keyword">val</span> <a href="code_VALLyrica.reap_children.html">reap_children</a></span> : <code class="type">unit -> unit</code></pre><div class="info ">
+Wait until all child processes have exited. Recurs until an exception
+    is raised indicating all children have been reaped.<br>
+</div>
+
+<pre><span id="VALwait_forever"><span class="keyword">val</span> <a href="code_VALLyrica.wait_forever.html">wait_forever</a></span> : <code class="type">unit -> unit</code></pre><div class="info ">
+Pause and wait for a signal using <em>sigsuspend</em>, then recur.<br>
+</div>
+
+<pre><span id="VALinstall_handler"><span class="keyword">val</span> <a href="code_VALLyrica.install_handler.html">install_handler</a></span> : <code class="type">int -> (unit -> unit) -> unit</code></pre><div class="info ">
+Install signal handler function for the given signal.<br>
+</div>
+</body></html>

@@ -1,0 +1,12 @@
+<html><head>
+<link rel="stylesheet" href="style.css" type="text/css">
+<meta content="text/html; charset=iso-8859-1" http-equiv="Content-Type">
+<link rel="Start" href="index.html">
+<link title="Index of values" rel=Appendix href="index_values.html">
+<link title="Index of modules" rel=Appendix href="index_modules.html">
+<link title="Init" rel="Chapter" href="Init.html"><title>Lyrica : Init.wait_forever</title>
+</head>
+<body>
+<code class="code"><span class="keyword">let</span>&nbsp;<span class="keyword">rec</span>&nbsp;wait_forever&nbsp;()&nbsp;=<br>
+&nbsp;&nbsp;sigsuspend&nbsp;full_signal_set&nbsp;;<br>
+&nbsp;&nbsp;wait_forever&nbsp;()</code></body></html>
