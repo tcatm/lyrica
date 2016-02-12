@@ -8,5 +8,5 @@
 </head>
 <body>
 <code class="code"><span class="keyword">let</span>&nbsp;<span class="keyword">rec</span>&nbsp;wait_forever&nbsp;()&nbsp;=<br>
-&nbsp;&nbsp;sigsuspend&nbsp;full_signal_set&nbsp;;<br>
+&nbsp;&nbsp;sigsuspend&nbsp;[]&nbsp;;<br>
 &nbsp;&nbsp;wait_forever&nbsp;()</code></body></html>

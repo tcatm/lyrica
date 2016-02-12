@@ -58,7 +58,7 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;_&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;reap_children&nbsp;()<br>
 <br>
 <span class="keyword">let</span>&nbsp;<span class="keyword">rec</span>&nbsp;wait_forever&nbsp;()&nbsp;=<br>
-&nbsp;&nbsp;sigsuspend&nbsp;full_signal_set&nbsp;;<br>
+&nbsp;&nbsp;sigsuspend&nbsp;[]&nbsp;;<br>
 &nbsp;&nbsp;wait_forever&nbsp;()&nbsp;<br>
 <br>
 <span class="keyword">let</span>&nbsp;install_handler&nbsp;signal&nbsp;fn&nbsp;=<br>
@@ -71,5 +71,7 @@
 &nbsp;&nbsp;sigprocmask&nbsp;<span class="constructor">SIG_BLOCK</span>&nbsp;full_signal_set&nbsp;|&gt;&nbsp;ignore&nbsp;;<br>
 &nbsp;&nbsp;spawn&nbsp;<span class="string">"/bin/rc.init"</span>&nbsp;[||]&nbsp;;<br>
 &nbsp;&nbsp;install_handler&nbsp;<span class="constructor">Sys</span>.sigchld&nbsp;reap_children&nbsp;;<br>
+&nbsp;&nbsp;install_handler&nbsp;<span class="constructor">Sys</span>.sigusr1&nbsp;(<span class="keyword">fun</span>&nbsp;_&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;spawn&nbsp;<span class="string">"/bin/rc.shutdown"</span>&nbsp;[|<span class="string">"poweroff"</span>|])&nbsp;;<br>
+&nbsp;&nbsp;install_handler&nbsp;<span class="constructor">Sys</span>.sigint&nbsp;(<span class="keyword">fun</span>&nbsp;_&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;spawn&nbsp;<span class="string">"/bin/rc.shutdown"</span>&nbsp;[|<span class="string">"reboot"</span>|])&nbsp;;<br>
 &nbsp;&nbsp;wait_forever&nbsp;()<br>
 </code></body></html>

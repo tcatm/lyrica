@@ -49,7 +49,7 @@ let rec reap_children () =
     | _                                   -> reap_children ()
 
 let rec wait_forever () =
-  sigsuspend full_signal_set ;
+  sigsuspend [] ;
   wait_forever () 
 
 let install_handler signal fn =
@@ -62,4 +62,6 @@ let () =
   sigprocmask SIG_BLOCK full_signal_set |> ignore ;
   spawn "/bin/rc.init" [||] ;
   install_handler Sys.sigchld reap_children ;
+  install_handler Sys.sigusr1 (fun _ -> spawn "/bin/rc.shutdown" [|"poweroff"|]) ;
+  install_handler Sys.sigint (fun _ -> spawn "/bin/rc.shutdown" [|"reboot"|]) ;
   wait_forever ()
